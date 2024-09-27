@@ -1,4 +1,4 @@
-# Example custom Database Spring MessageSource
+# Example custom Spring MessageSource from database
 
 This example shows how to use the [spring-messagesource-catalogue](https://github.com/alaugks/spring-messagesource-catalog) to implement a MessageSource from a database.
 
