@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SpringBootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="spring-messagesource-db" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="dev.alaugks.spring.messagesource.db.SpringBootApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

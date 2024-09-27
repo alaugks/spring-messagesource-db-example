@@ -1,0 +1,23 @@
+# Spring
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Custom ###
+/src/main/resources/application-*.properties
+/src/test/resources/application-*.properties
+/.mvn/
+/mvnw
+/mvnw.cmd
+/.jpb/jpb-settings.xml
+/src/main/resources/flyway.conf
+/var/
+/docker.reset.sh
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

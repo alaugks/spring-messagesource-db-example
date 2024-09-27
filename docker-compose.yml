@@ -1,0 +1,9 @@
+services:
+  spring:
+#    image: localhost/spring_messagesource_db:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring_messagesource_db
+    ports:
+      - "8080:8080"

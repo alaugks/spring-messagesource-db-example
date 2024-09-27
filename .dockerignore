@@ -1,0 +1,19 @@
+###  Dirs ###
+.git
+.github
+.idea
+.mvn
+.run
+target
+var
+
+###  Files ###
+.gitignore
+docker-compose.yml
+Dockerfile
+database_dump.sql
+mvnw
+mvnw.cmd
+README.md
+run.*
+spring-messagesource-db.iml

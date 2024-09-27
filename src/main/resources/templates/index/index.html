@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 1em;
+            font-size: 1.2em;
+        }
+
+        nav {
+            padding-bottom: 3em;
+        }
+
+        main {
+            clear: both;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            padding-right: 1em;
+        }
+
+        table {
+            border: 1px solid #dededf;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-spacing: 1px;
+            text-align: left;
+        }
+
+        table th {
+            border: 1px solid #dededf;
+            background-color: #eceff1;
+            color: #000000;
+            padding: 10px 20px;
+            text-align: left;
+        }
+
+        table td {
+            border: 1px solid #dededf;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="?lang=en">en</a></li>
+            <li><a href="?lang=de">de</a></li>
+            <li><a href="?lang=en-us">en-US</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <p>Message Expressions</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        code
+                    </th>
+                    <th>
+                        value
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>headline</td>
+                    <td>[[#{headline}]]</td>
+                </tr>
+                <tr>
+                    <td>messages.headline</td>
+                    <td>[[#{messages.headline}]]</td>
+                </tr>
+                <tr>
+                    <td>postcode</td>
+                    <td>[[#{postcode}]]</td>
+                </tr>
+                <tr>
+                    <td>messages.postcode</td>
+                    <td>[[#{messages.postcode}]]</td>
+                </tr>
+                <tr>
+                    <td>payment.headline</td>
+                    <td>[[#{payment.headline}]]</td>
+                </tr>
+                <tr>
+                    <td>payment.expiry_date</td>
+                    <td>[[#{payment.expiry_date}]]</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Variable Expression</p>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    code
+                </th>
+                <th>
+                    value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>headline</td>
+                <td>[[${headline}]]</td>
+            </tr>
+            <tr>
+                <td>messages.headline</td>
+                <td>[[${messages_headline}]]</td>
+            </tr>
+            <tr>
+                <td>postcode</td>
+                <td>[[${postcode}]]</td>
+            </tr>
+            <tr>
+                <td>messages.postcode</td>
+                <td>[[${messages_postcode}]]</td>
+            </tr>
+            <tr>
+                <td>payment.headline</td>
+                <td>[[${payment_headline}]]</td>
+            </tr>
+            <tr>
+                <td>payment.expiry_date</td>
+                <td>[[${payment_expiry_date}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>
