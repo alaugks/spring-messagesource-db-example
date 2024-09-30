@@ -33,6 +33,6 @@ public class WebMvcConfigurerConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor())
 				.addPathPatterns("/**")
-				.excludePathPatterns("/static/**", "/error");
+				.excludePathPatterns("/error");
 	}
 }
