@@ -1,9 +1,14 @@
 services:
   spring:
-#    image: localhost/spring_messagesource_db:latest
+    container_name: spring_messagesource_db
+    volumes:
+      - ./:/var/www/app
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: spring_messagesource_db
+    command: bash -c "
+      mvn package -Djar.forceCreation=true
+      && java -jar /var/www/app/target/application.jar
+      "
     ports:
       - "8080:8080"
