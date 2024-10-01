@@ -1,6 +1,6 @@
 services:
   spring:
-    container_name: spring_messagesource_db
+    container_name: spring_messagesource_db_example
     volumes:
       - ./:/var/www/app
     build:
