@@ -1,5 +1,5 @@
-name: "Docker Build Test"
-run-name: Build Docker Image [${{ github.ref_name }}]
+name: "Docker Image Build Test"
+run-name: Docker Image Build Test [${{ github.ref_name }}]
 on:
   push:
     branches:
