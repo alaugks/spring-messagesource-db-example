@@ -18,7 +18,7 @@
     <version>1.0.0</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Catalog to create a custom Spring MessageSource</description>
+    <description>Example: Custom Database Spring MessageSource</description>
     <url>https://github.com/alaugks/spring-messagesource-db-example</url>
 
     <properties>
