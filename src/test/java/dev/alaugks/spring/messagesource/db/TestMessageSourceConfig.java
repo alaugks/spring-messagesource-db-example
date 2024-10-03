@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import io.github.alaugks.spring.messagesource.catalog.CatalogMessageSourceBuilder;
 import io.github.alaugks.spring.messagesource.catalog.records.TransUnit;
+import io.github.alaugks.spring.messagesource.catalog.records.TransUnitInterface;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.MessageSource;
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 public class TestMessageSourceConfig {
 	@Bean
 	public MessageSource messageSource() {
-		List<TransUnit> transUnits = new ArrayList<TransUnit>() {{
+		List<TransUnitInterface> transUnits = new ArrayList<>() {{
 			add(new TransUnit(Locale.forLanguageTag("en"), "postcode", "Postcode"));
 			add(new TransUnit(Locale.forLanguageTag("de"), "postcode", "Postleitzahl"));
 			add(new TransUnit(Locale.forLanguageTag("en-US"), "postcode", "Zip code"));
