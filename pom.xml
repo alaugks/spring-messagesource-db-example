@@ -15,7 +15,7 @@
 
     <artifactId>spring-messagesource-db</artifactId>
 
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Example: Custom Database Spring MessageSource</description>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>io.github.alaugks</groupId>
             <artifactId>spring-messagesource-catalog</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.6.0</version>
         </dependency>
 
         <dependency>
