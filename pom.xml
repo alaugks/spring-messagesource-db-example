@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-community-dialects</artifactId>
-            <version>7.3.6.Final</version>
+            <version>6.5.2.Final</version>
         </dependency>
 
         <dependency>
@@ -239,7 +239,7 @@
     </profiles>
 
     <build>
-        <finalName>application</finalName>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
