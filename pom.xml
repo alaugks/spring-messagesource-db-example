@@ -15,7 +15,7 @@
 
     <artifactId>spring-messagesource-db</artifactId>
 
-    <version>1.0.1</version>
+    <version>0.10.1</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Example: Custom Database Spring MessageSource</description>
