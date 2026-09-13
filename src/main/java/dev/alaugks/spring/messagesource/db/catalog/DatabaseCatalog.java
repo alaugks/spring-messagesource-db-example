@@ -23,8 +23,7 @@ public class DatabaseCatalog extends AbstractCatalog {
 		this.messageSourceRepository.findAll().forEach(tu -> transUnits.add(new TransUnit(
 			tu.getLocale(),
 			tu.getCode(),
-			tu.getValue(),
-			tu.getDomain()
+			tu.getValue()
 		)));
 		return transUnits;
 	}
