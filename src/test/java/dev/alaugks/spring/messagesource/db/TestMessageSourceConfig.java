@@ -1,12 +1,13 @@
 package dev.alaugks.spring.messagesource.db;
 
+import io.github.alaugks.spring.messagesource.base.BaseMessageSourceBuilder;
+import io.github.alaugks.spring.messagesource.base.records.TransUnit;
+import io.github.alaugks.spring.messagesource.base.records.TransUnitInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import io.github.alaugks.spring.messagesource.catalog.CatalogMessageSourceBuilder;
-import io.github.alaugks.spring.messagesource.catalog.records.TransUnit;
-import io.github.alaugks.spring.messagesource.catalog.records.TransUnitInterface;
+
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.MessageSource;
@@ -22,8 +23,8 @@ public class TestMessageSourceConfig {
 			add(new TransUnit(Locale.forLanguageTag("en-US"), "postcode", "Zip code"));
 		}};
 
-		return CatalogMessageSourceBuilder
-				.builder(transUnits, Locale.forLanguageTag("en"))
+		return BaseMessageSourceBuilder
+				.builder(Locale.forLanguageTag("en"), transUnits)
 				.build();
 	}
 }
