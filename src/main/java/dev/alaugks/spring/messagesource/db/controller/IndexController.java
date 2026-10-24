@@ -1,12 +1,19 @@
 package dev.alaugks.spring.messagesource.db.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
@@ -17,17 +24,63 @@ public class IndexController {
 		this.messageSource = messageSource;
 	}
 
-	@GetMapping(value = "/", name = "index_index")
-	public String index(Model model, Locale locale) {
-		try {
-			model.addAttribute("headline", this.messageSource.getMessage("headline", null, locale));
-			model.addAttribute("messages_headline", this.messageSource.getMessage("messages.headline", null, locale));
-			model.addAttribute("postcode", this.messageSource.getMessage("postcode", null, locale));
-			model.addAttribute("messages_postcode", this.messageSource.getMessage("messages.postcode", null, locale));
-			model.addAttribute("payment_headline", this.messageSource.getMessage("payment.headline", null, locale));
-			model.addAttribute("payment_expiry_date", this.messageSource.getMessage("payment.expiry_date", null, locale));
-		} catch (NoSuchMessageException ignored) {}
+	@GetMapping("/")
+	public ModelAndView index(HttpServletRequest request) {
+		// Fallback. Redirect is by RequestURILocaleInterceptor.
+		String langCode = request.getLocale().toString();
+		return new ModelAndView("redirect:" + String.format("/%s/home", langCode));
+	}
+
+	@GetMapping(value = "/{lang}/home", name = "home_index")
+	public String index(Model model, Locale locale, @PathVariable String lang) {
+
+		Date expiryDate = Date.from(
+				LocalDate.of(2026, 7, 31)
+						.atStartOfDay(ZoneId.of("UTC"))
+						.toInstant()
+		);
+
+		model.addAttribute("headline", this.getMessage("headline", null, locale));
+		model.addAttribute("messages_headline", this.getMessage("messages.headline", null, locale));
+		model.addAttribute("postcode", this.getMessage("postcode", null, locale));
+		model.addAttribute("messages_postcode", this.getMessage("messages.postcode", null, locale));
+		model.addAttribute("payment_headline", this.getMessage("payment.headline", null, locale));
+		model.addAttribute("payment_expiry_date", this.getMessage("payment.expiry_date", null, locale));
+		model.addAttribute("expiryDate", expiryDate);
+		model.addAttribute("payment_expiry_info", this.getMessage(
+				"payment.expiry_info",
+				new Object[]{Map.of("expiryDate", expiryDate)},
+				locale
+		));
+		model.addAttribute("salutation", this.getMessage(
+				"salutation",
+				new Object[]{Map.of("salutation", 3)},
+				locale
+		));
+		model.addAttribute("file_deleted", this.getMessage(
+				"file_deleted",
+				new Object[]{Map.of("count", 1000)},
+				locale
+		));
+		model.addAttribute("device_hint", this.getMessage(
+				"device_hint",
+				new Object[]{Map.of("device", "mobile")},
+				locale
+		));
+		model.addAttribute("greeting", this.getMessage(
+				"greeting",
+				new Object[]{Map.of("recipient_gender", "feminine")},
+				locale
+		));
 
 		return "index/index";
+	}
+
+	private String getMessage(String code, Object[] args, Locale locale) {
+		try {
+			return this.messageSource.getMessage(code, args, locale);
+		} catch (NoSuchMessageException ignored) {
+			return null;
+		}
 	}
 }

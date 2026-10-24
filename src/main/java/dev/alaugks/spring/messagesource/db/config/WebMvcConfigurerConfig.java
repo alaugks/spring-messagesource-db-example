@@ -1,38 +1,43 @@
 package dev.alaugks.spring.messagesource.db.config;
 
+import io.github.alaugks.spring.requesturilocaleinterceptor.RequestURILocaleInterceptor;
+import io.github.alaugks.spring.requesturilocaleinterceptor.RequestURILocaleResolver;
+import java.util.List;
 import java.util.Locale;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class WebMvcConfigurerConfig implements WebMvcConfigurer {
 
-	@Bean
-	public LocaleResolver localeResolver() {
-		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(Locale.forLanguageTag("en"));
-		resolver.setLocaleAttributeName("session.current.locale");
-		resolver.setTimeZoneAttributeName("session.current.timezone");
-		return resolver;
-	}
+	private final Locale defaultLocale = Locale.forLanguageTag("en");
+
+	private final List<Locale> supportedLocales = List.of(
+			Locale.forLanguageTag("en"),
+			Locale.forLanguageTag("de"),
+			Locale.forLanguageTag("en-US")
+	);
 
 	@Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-		localeChangeInterceptor.setParamName("lang");
-		return localeChangeInterceptor;
+	public LocaleResolver localeResolver() {
+		RequestURILocaleResolver resolver = new RequestURILocaleResolver();
+		resolver.setDefaultLocale(this.defaultLocale);
+		return resolver;
 	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor())
+		RequestURILocaleInterceptor urlInterceptor = RequestURILocaleInterceptor
+				.builder(this.defaultLocale)
+				.supportedLocales(this.supportedLocales)
+				.defaultRequestURI("/en/home")
+				.build();
+
+		registry.addInterceptor(urlInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/error");
+				.excludePathPatterns("/static/**", "/error");
 	}
 }

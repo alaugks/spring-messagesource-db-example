@@ -25,6 +25,7 @@ public class MessageSourceConfig {
 	public MessageSource messageSource(List<TransUnitInterface> transUnits) {
 		return BaseMessageSourceBuilder
 				.builder(Locale.forLanguageTag("en"), transUnits)
+				.enableICU4j()
 				.build();
 	}
 

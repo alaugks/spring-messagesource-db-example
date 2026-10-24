@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${#locale.toLanguageTag()}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
 
@@ -63,9 +63,9 @@
 
     <nav>
         <ul>
-            <li><a href="?lang=en">en</a></li>
-            <li><a href="?lang=de">de</a></li>
-            <li><a href="?lang=en-us">en-US</a></li>
+            <li><a th:href="${languageMenuPath.get('en')}">en</a></li>
+            <li><a th:href="${languageMenuPath.get('de')}">de</a></li>
+            <li><a th:href="${languageMenuPath.get('en-us')}">en-US</a></li>
         </ul>
     </nav>
 
@@ -108,6 +108,26 @@
                     <td>payment.expiry_date</td>
                     <td>[[#{payment.expiry_date}]]</td>
                 </tr>
+                <tr>
+                    <td>salutation</td>
+                    <td>[[#{salutation(${ {'salutation' : 3} })}]]</td>
+                </tr>
+                <tr>
+                    <td>payment.expiry_info</td>
+                    <td>[[#{payment.expiry_info(${ {'expiryDate' : expiryDate} })}]]</td>
+                </tr>
+                <tr>
+                    <td>file_deleted</td>
+                    <td>[[#{file_deleted(${ {'count' : 1000} })}]]</td>
+                </tr>
+                <tr>
+                    <td>device_hint</td>
+                    <td>[[#{device_hint(${ {'device' : 'mobile'} })}]]</td>
+                </tr>
+                <tr>
+                    <td>greeting</td>
+                    <td>[[#{greeting(${ {'recipient_gender' : 'feminine'} })}]]</td>
+                </tr>
             </tbody>
         </table>
 
@@ -148,6 +168,26 @@
             <tr>
                 <td>payment.expiry_date</td>
                 <td>[[${payment_expiry_date}]]</td>
+            </tr>
+            <tr>
+                <td>salutation</td>
+                <td>[[${salutation}]]</td>
+            </tr>
+            <tr>
+                <td>payment.expiry_info</td>
+                <td>[[${payment_expiry_info}]]</td>
+            </tr>
+            <tr>
+                <td>file_deleted</td>
+                <td>[[${file_deleted}]]</td>
+            </tr>
+            <tr>
+                <td>device_hint</td>
+                <td>[[${device_hint}]]</td>
+            </tr>
+            <tr>
+                <td>greeting</td>
+                <td>[[${greeting}]]</td>
             </tr>
             </tbody>
         </table>
